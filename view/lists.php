@@ -54,12 +54,18 @@
                         </td>
                         <td>
                             <?php
+                            // 提取字符串中的中文字符 取出html标签
+                            preg_match_all('/[\x{4e00}-\x{9fff}]+/u', $v['content'], $matches);
+
+                            $str = join('', $matches[0]);
+
                             // 1. 判断留言内容长度 2. 如果内容超过30进行截取
-                            if(mb_strlen($v['content'])>30){
+                            if(mb_strlen($str)>30){
                                 // 1.内容超过30 进行字符串截取 2.同时添加超链接，用于点击查看详情
                                 // 1. 更首页数据一致  2.$K+1 保存和首页数据一致
 //                                $k+=1;
-                                echo "<a href='?index&id=$k' class='sheng' title='点击查看详情'>".mb_substr($v['content'],0,30,'utf-8')."···</a>";
+//                                echo "<a href='?index&id=$k' class='sheng' title='点击查看详情'>".mb_substr(htmlspecialchars($v['content']),0,30,'utf-8')."···</a>";
+                                echo "<a href='?index&id=$k' class='sheng' title='点击查看详情'>".mb_substr($str,0,30,'utf-8')."···</a>";
 
                             }else {
                                 // 1.正常情况输出，2.没有超过30 同时没有查看具体详情的超链接
