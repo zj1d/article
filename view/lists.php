@@ -31,7 +31,9 @@
                     <!-- <td>点赞/回复</td>-->
                     <td>操作</td>
                 </tr>
-                <?php $num =0; foreach ($article as $k=>$v){  $num++;  ?>
+                <?php $num =0; foreach ($article as $k=>$v){
+                    if($v['author'] === $_SESSION['username']){
+                    $num++;  ?>
                     <tr>
                         <td>
                             <?php
@@ -88,7 +90,7 @@
                             echo $k; ?>"' class="btn btn-danger  btn-xs  del" >删除</a>
                         </td>
                     </tr>
-                <?php  } ?>
+                <?php } } ?>
             </table>
         </div>
     </div>

@@ -6,6 +6,9 @@ require_once "./lib/functions.php";
 // 1.开启session 2.用于保存验证码信息 方便验证
 session_start();
 
+
+
+
 // 1. 如果有auth的get请求 2.则生成验证码 否则加载模板功能
 if(isset($_GET['auth']) && $_GET['auth']==='authcode'){
     // 1. 实例化验证码对象 2.调用用里面的函数实现验证码

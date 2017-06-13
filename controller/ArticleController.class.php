@@ -7,8 +7,9 @@
  */
 class ArticleController
 {
-    private $dbdata;  // 1. 设置data属性 2. 用于接受保存数据库数据
+    private $dbdata;   // 1. 设置data属性 2. 用于接受保存数据库数据
     private $article;  // 1. 设置data属性 2. 用于接受保存数据库数据
+    private $user;
 
     /**
      * ArticleController constructor.
@@ -24,6 +25,25 @@ class ArticleController
         $this->dbdata = require("./database/nav.php");
         // 1. 加载文章数据 2.用于显示文章
         $this->article = require("./database/article.php");
+        // 1.加载用户表数据库 用于判断用户是否存在
+        $this->user = require('./database/user.php');
+
+        // 检查是否有cookie 2.如果有username信息 设置$session
+        if(isset($_COOKIE['username'])){
+            // 1.读取$_COOKIE中的username中的数值 2.url解码还原真实数据
+            $luser = urldecode($_COOKIE['username']);
+            // 1.变量数据库 2.判断cookie中存储的用户名是否在数据库中
+            foreach ($this->user as $v){
+                // 1.将用户中的数据库中的用户名加密 2.和cookie中的值比较
+                $vs =md5(md5($v['username'])."666");
+                // 1.如果cookie中的值 和数据库中的值完全相等 2.进行设置$session操作
+                if($luser ===$vs){
+                    // 1.将$v即用户数据库中指定的用户名设置到$_SESSION中 2.即实现用户的免登陆
+                    $_SESSION['username']=$v['username'];
+                }
+            }
+        }
+
         // 更加传参$method参数的不同，自动加载不同的类，实现不同的功能。利用变量函数的概念
         $this->$method();
     }
@@ -82,7 +102,7 @@ class ArticleController
             if(isset($username) && isset($pwd)){
                 // 1. 读取密码文件库 2.用于后续操作
                 // 1.加载数据库 2.用于数据验证
-                $userdb = require_once './database/user.php';
+                $userdb = $this->user;
                 // 1.遍历数据库变量 2. 取出数据中的每一组数值
                 foreach ($userdb as  $k=>$v){
                     // 1. 判断输入姓名是否存在 2. 进行进一步验证
@@ -92,6 +112,16 @@ class ArticleController
                             // 1. 开启session 2.如果用了存储数据
                             // 1.将用户名写入session 2.进行数据的持久保存
                             $_SESSION['username']=$username;
+
+                            // *************cookie*****************
+                            // 1. 将用户名经过双重md5加密，有效期 3消失 作用域整个域名内
+                            // 2. 用户在此登录时，读取cookie值，判断是否在数据库中，如果在设置session
+                            // 3. 实现简单的免登陆
+                            $val = md5(md5($username)."666");
+                            setcookie("username",$val,time()+3600*3,"/");
+
+                            //*************************************
+
                             // 1. 显示结果 2. 跳转到首页
                             show("登录成功,欢迎{$username}的到来",'./index.php');
                         }else{
@@ -119,6 +149,7 @@ class ArticleController
     private function logout(){
         // 1.删除session中的用户名 2.实现注销功能
         unset($_SESSION['username']);
+        setcookie("username","",666,"/");
         // 1.注销后让页面提供跳转 2.跳转到首页 网站注销后均是跳转到首页 ，取消用户特权
         echo "<script>location.href='index.php'</script>";
     }
@@ -142,7 +173,7 @@ class ArticleController
                 $authcode = strtolower(trim($_POST['authcode']));
 
                 // 引入数据库
-                $userdb = require_once './database/user.php';
+                $userdb = $this->user;
                 // 再次检查是否有数据库重名
                 // 1. 用户名是否存在检测  2.防止用户名重复
                 foreach ($userdb as $v){
@@ -205,7 +236,7 @@ con;
                 // 1.取出post数据 2.进行后续操作
                 $name = $_POST['username'];
                 // 引入数据库
-                $userdb = require_once './database/user.php';
+                $userdb = $this->user;
 
                 // 再次检查是否有数据库重名
                 // 1. 用户名是否存在检测  2.防止用户名重复
@@ -242,7 +273,7 @@ con;
                 // 1.取出post数据 2.进行后续操作
                 $email = strtolower($_POST['emailname']);
                 // 1. 引入数据库 2.为用户验证是否重复提供数据
-                $userdb = require_once './database/user.php';
+                $userdb = $this->user;
 
                 // 再次检查是否有数据库重名
                 // 1. 用户名是否存在检测  2.防止用户名重复
