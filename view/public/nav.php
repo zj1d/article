@@ -32,13 +32,13 @@
                             <!--通过PHP遍历遍历输出二级菜单-->
 
                                 <li >
-                                    <a href="?m=lists">文章管理</a>
+                                    <a href="?a=lists">文章管理</a>
                                 </li>
                                 <li >
-                                    <a href="?m=store">发布文章</a>
+                                    <a href="?a=store">发布文章</a>
                                 </li>
                                 <li >
-                                    <a href="?m=logout">注销</a>
+                                    <a href="?c=member&a=logout">注销</a>
                                 </li>
 
                         </ul>
@@ -46,8 +46,8 @@
                 </ul>
             <?php }else{ ?>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="?m=login">登录</a></li>
-                    <li><a href="?m=register">注册</a></li>
+                    <li><a href="?c=member&a=login">登录</a></li>
+                    <li><a href="?c=member&a=reg">注册</a></li>
                 </ul>
             <?php } ?>
 

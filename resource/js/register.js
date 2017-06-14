@@ -15,7 +15,7 @@ $(function () {
             name.data({'s':0});
             name.parent().parent().find('.error').html("用户名有3-16位字符组成").show().siblings(".tixing").hide();
         }else {
-            $.post('index.php?m=register',{'username':val},function (data){
+            $.post('index.php?c=member&a=reg',{'username':val},function (data){
                 if(data==1){
                     name.data({'s':1});
                     name.parent().parent().find(".error").css({'color':"green"}).html("用户名可用").show().siblings(".tixing").hide();
@@ -36,7 +36,7 @@ $(function () {
     // 验证邮箱
     $('input[name=emailname]').blur(function () {
         var name = $(this);
-        $.post("index.php?m=register",{'emailname':name.val()},function (data) {
+        $.post("index.php?c=member&a=reg",{'emailname':name.val()},function (data) {
             // $name.parent().parent().find(".error").html(a).show();
             if(data==1){
                 name.data({'s':1});
@@ -79,7 +79,7 @@ $(function () {
     $('input[name=authcode]').blur(function () {
         var name = $(this);
         var authcode = name.val();
-        $.post('index.php?m=register',{'authcode':authcode},function (data) {
+        $.post('index.php?c=member&a=reg',{'authcode':authcode},function (data) {
             if(data==1){
                 name.data({'s':1});
                 // $(this).parent().parent().find('.error').show().html(data);

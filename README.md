@@ -10,32 +10,51 @@
 ```
 ·
 │
-├── controller                        // 控制器文件，存放控制文章功能的类
-|	└── ArticleController.class.php   // 控制文章系统的增删改查
-|	└── AuthCode.class.php            // 验证码类 
+├── controller                        // 控制器文件，实现文章管理系统的各个模块功能
+|	└── Article.php                   // 控制文章系统的增删改查
+|	└── Member.php                    // 会员管理类 登录 注册 注销功能 
+|   └── Base.php                      // 抽象类 现在还没有用
+|
+|
 |—— database                          // 数据库文件夹
 |	└── article.php                   // 文章数据库
 |	└── nav.php                       // 导航条数据库
 |	└── user.php                      // 用户数据库
+|
+|
 |—— lib                               // 核心库文件夹，存放函数存文件和数据库文件
 |	└──  functions.php                // 函数库文件，主要使用自动加载类函数
+|
+|
 |—— resource                          // 存放模板的样式文件夹
-|	├── css                    		 // css样式
+|	├── css                    		  // css样式
 |	├── font                          // 字体库
-|	├── images                 		 // 图片文件键
-|	├── js						     // js文件夹
+|	├── images                 		  // 图片文件键
+|	└── js						      // js文件夹
+|
+|
+├── tools                             // 工具类
+|   └── AuthCode.php                  // 验证码类,实现验证码功能  
+|
+|
 |—— umeditor                          // 百度编辑器
+|
 |—— view                              // 模板文件夹 
-|—— public
-|	├── index.php                  	 // 首页模板
-|	├── editor.php                   // 编辑模板
-|	├── store.php                    // 添加模板
-|	├── del.php                      // 删除功能 
-|	├── lists.php                    // 文章列表模板
-|	├── login.php                    // 登录页面
-|	├── register.php                 // 注册页面
-|—— README.md                        // 简介
-└─ index.php                         // 文章系统的入口
+|   |—— public
+|        |—— nav.php                   // 导航栏模板
+|   |—— article
+|        ├── index.php                 // 首页模板
+|        ├── editor.php                // 编辑模板
+|        ├── store.php                 // 添加模板
+|        ├── del.php                   // 删除功能 
+|        ├── lists.php                 // 文章列表模板
+|    |—— member
+|	     ├── login.php                 // 登录页面
+|        └── register.php              // 注册页面
+|
+|—— README.md                         // 简介
+|
+└─ index.php                          // 文章系统的入口
 
 
 
@@ -43,7 +62,19 @@
 
 ## 记录 
 
-### 2017年6月13日
+### 2017年6月14日 
+
+ 大部分内容重新，结构重新重新编辑 ，文章内容和会员功能分类 
+* 类重新分类，现分成 文章管理类 和 会员管理类  将.class.php结尾改为.php结尾
+* 将验证码类分成到了工具文件夹
+* 文章管理类: 实现文章的增、删、改、查 
+* 会员管理类: 使用会员的注册、登录以及注销功能 
+* 视图文件夹和类名对应，具体模板文件对应相应类中的方法
+
+
+
+### 2017年6月13日 
+0.01 版
 * 添加登录功能完善 
 * 修改后台文章显示列表，只能显示当前用户的文章
 

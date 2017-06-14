@@ -11,7 +11,7 @@ $(function () {
     $('input[name=authcode]').blur(function () {
         var name = $(this);
         var authcode = name.val();
-        $.post('index.php?m=register',{'authcode':authcode},function (data) {
+        $.post('index.php?c=member&a=reg',{'authcode':authcode},function (data) {
             if(data==1){
                 name.data({'s':1});
                 // $(this).parent().parent().find('.error').show().html(data);

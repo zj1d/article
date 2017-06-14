@@ -3,25 +3,29 @@
 // 1. 引入函数库 2.使用函数中的函数自动加载功能  设置页面编码 以及设置默认时区的功能
 require_once "./lib/functions.php";
 
+// 设置session的名称 是再客户端中的cookie不容易识别 增加安全性
+session_name('zy');
+
 // 1.开启session 2.用于保存验证码信息 方便验证
 session_start();
 
+// 控制器 c controller
+// 根据传入不同的参数 调用不同的类
+$c = isset($_GET['c'])?ucfirst($_GET['c']):'Article';
 
 
+// 方法 a action
+// 根据get参数中a的值 调用不同的类中的功能
+$a = isset($_GET['a'])?$_GET['a']:"index";
 
-// 1. 如果有auth的get请求 2.则生成验证码 否则加载模板功能
-if(isset($_GET['auth']) && $_GET['auth']==='authcode'){
-    // 1. 实例化验证码对象 2.调用用里面的函数实现验证码
-    $auth = new AuthCode('./resource/font/OpenSans-Regular.ttf',100,36,18,4,[["style"=>"circle","num"=>4],["style"=>"dot","num"=>100]],"#dddddd");
-// 1. 调用验证码中的show方法 2.最终实现验证码的输出
-    $authcode = $auth->show();
-    // 1.将验证码产生的字符串结果保存到session中 2.用于验证字符串结果的对错
-    $_SESSION['authcode'] = $authcode;
+// 定义方法常量 方便类中使用调用相应的视图模板
+define("ACTION",$a);
 
-}else{
-    // 1. 判断get请求 2.如果没哟参数 默认请求index
-    $action = isset($_GET['m'])?$_GET['m']:'index';
-    // 1.实例化ArticleController类，生成对象 2. 根据参数的不同调用对象中的不同功能
-    $main = new ArticleController($action);
-}
+// 定义类常量 方便类中使用调用相应的视图模板
+define("CONTROLLER",$c);
 
+// call_user_func_array([对象，方法],[参数]);
+// 实例化$c对代表的对象 ，并且调用 对象中的$a中对对应的成员方法
+// [] 代表所需要传递的参数
+// 如果直接访问index.php没有带任何get参数，会默认访问Home类中的entry方法
+call_user_func_array([new $c,$a],[]);
