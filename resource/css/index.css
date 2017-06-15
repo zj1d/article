@@ -23,17 +23,18 @@ footer{
     background: #2B303B;
     color: #848e99;
     border-top: 1px solid #E5E5E5;
-    padding: 15px 0;
+    padding: 10px 0;
     text-align: center;
 }
-/*设置logo */
-.logo{
-    /*background: url("../images/nanshansong.png") no-repeat;*/
-    text-indent: -9999px;
-    background-size: auto 100%;
-    cursor: default;
-}
+/*!*设置logo *!*/
+/*.logo{*/
+    /*!*background: url("../images/nanshansong.png") no-repeat;*!*/
+    /*text-indent: -9999px;*/
+    /*background-size: auto 100%;*/
+    /*cursor: default;*/
+/*}*/
 
+/*左侧列表页*/
 ul.list-group.col-sm-2 {
     margin-top: 100px;
 }

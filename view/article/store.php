@@ -29,22 +29,31 @@
                 <input type="hidden" name="author" value="<?php echo $_SESSION['username'] ?>">
             </div>
         </div>
-
+        <!--文章分类-->
+        <div class="form-group">
+            <label for="inputEmail3" class="col-sm-1 control-label" >选择分类</label>
+            <div class="col-sm-5">
+                <!-- 下拉列表  -->
+                <select class="form-control" name="classify">
+                    <?php foreach ($data as $v){ ?>
+                        <option value="<?php echo $v['cid'];?>" <?php if($v['cid']==1) echo "selected" ?> ><?php echo $v['top']; ?></option>
+                    <?php } ?>
+                </select>
+                <!-- 下拉列表结束 -->
+                <input type="hidden" name="author" value="<?php echo $_SESSION['username'] ?>">
+            </div>
+        </div>
+        <!--文章分类-->
         <script id="container" name="content" type="text/plain" style="height: 300px"></script>
+
         <button type="submit" class="btn btn-primary">提交</button>
 
     </form>
 </div>
 
-<footer class="text-center">
-    <p>风中的云，云中的梦</p>
-    <p>Copyright © 2010-2017  www.fengzhongyun1992.top All Rights Reserved </p>
-</footer>
-<!--footer区结束-->
-<script src="./resource/js/jquery.js"></script>
-<script src="./resource/js/bootstrap.js"></script>
-<script src="./resource/js/canvas-particle.js"></script>
-<script src="./resource/js/index.js"></script>
+<!--加载footer即js文件-->
+<?php include "./view/public/footer.php"?>
+
 <!-- 实例化编辑器 -->
 <script type="text/javascript">
     var ue = UE.getEditor('container');

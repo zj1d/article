@@ -33,7 +33,7 @@ class Article extends Base
      */
     public function index()
     {
-        // 1. 加载数据库，获取数据库中的内容，2. 为首页提供文章数据
+        // 1. 加载数据库，获取数据库中的内容，2. 为首页提供导航栏数据
         $data = $this->dbdata;
         // 1.加载文章数据库 2.位页面中的文章显示提供数据
         $article = $this->article;
@@ -44,7 +44,7 @@ class Article extends Base
 
 
         // 使用继承父类的方法 当时模板获取不到数据 ):):):):
-//        $this->view();
+        // $this->view();
 
         // 加载首页模板,
         // 发现没有对应的样式，因为页面加载是相对于首页中的index.php,
@@ -186,6 +186,21 @@ class Article extends Base
             go('找不到该篇文章，点击跳回首页','index.php');
 
         }
+    }
+
+    /**
+     * 文章分类功能
+     */
+    public function classify(){
+        // 1. 加载数据库，获取数据库中的内容，2. 为首页提供文章数据
+        $data = $this->dbdata;
+        // 1.加载文章数据库 2.位页面中的文章显示提供数据
+        $article = $this->article;
+        // 1.判断有无get请求 2.如果没有默认是 0 用于刚登陆时默认的显示数据
+        $cl = isset($_GET['cl'])?$_GET['cl']:0;
+        $id = isset($_GET['id'])?$_GET['id']:0;
+        // 1.加载目录 用于显示分类文章 和index模板相似
+        include './view/article/classify.php';
     }
 
 

@@ -9,25 +9,31 @@
 // 导航栏数据
 return $data = [
     [
+        "cid"=> 0,
         'top' => '前端',
-        'url' => ""
     ],
     [
+        "cid"=> 1,
         'top' => 'PHP',
     ],
     [
+        "cid"=> 2,
         'top' => 'Python',
     ],
     [
+        "cid"=> 3,
         'top' => 'Node.js',
     ],
     [
+        "cid"=> 4,
         'top'=>'linux',
     ],
     [
+        "cid"=> 5,
         'top'=>'数据库',
     ],
     [
+        "cid"=> 6,
         'top'=>'服务器',
     ]
 

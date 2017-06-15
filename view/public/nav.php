@@ -1,14 +1,30 @@
 <!--导航开始-->
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-default" role="navigation">
     <div class="container">
+        <!-- logo区-->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand logo " href="index.php">南山松</a>
+        </div>
+
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" role="navigation">
             <ul class="nav navbar-nav">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
                 <!-- 默认选中区-->
-                <li class="active"><a href="index.php">首&nbsp;&nbsp;&nbsp;页 <span class="sr-only">(current)</span></a></li>
                 <!--通过PHP遍历输出一级菜单-->
                 <?php foreach ($data as  $k=>$val){ ?>
                     <li class="dropdown <?php  if($k>4){ echo 'hidden-sm';} ?>">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $val['top']; ?></a>
+                        <a href="?a=classify&cl=<?php echo $k; ?>"  class="dropdown-toggle"  role="button" aria-haspopup="true" aria-expanded="false"><?php echo $val['top']; ?></a>
 
                     </li>
                 <?php } ?>
@@ -49,3 +65,4 @@
     </div><!-- /.container-fluid -->
 </nav>
 <!--导航结束-->
+

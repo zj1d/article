@@ -40,16 +40,8 @@
 </div>
 </div>
 <!--main结束-->
-<!--footer区-->
-<footer class="text-center">
-    <p>风中的云，云中的梦</p>
-     <p>Copyright © 2010-2017  www.fengzhongyun1992.top All Rights Reserved </p>
-</footer>
-<!--footer区结束-->
-<script src="./resource/js/jquery.js"></script>
-<script src="./resource/js/bootstrap.js"></script>
-<script src="./resource/js/canvas-particle.js"></script>
-<script src="./resource/js/index.js"></script>
+<!--加载footer即js文件-->
+<?php include "./view/public/footer.php"?>
 
 </body>
 </html>
