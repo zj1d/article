@@ -8,15 +8,8 @@
                 <!--通过PHP遍历输出一级菜单-->
                 <?php foreach ($data as  $k=>$val){ ?>
                     <li class="dropdown <?php  if($k>4){ echo 'hidden-sm';} ?>">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $val['top']; ?> <span class="caret"></span> </a>
-                        <ul class="dropdown-menu">
-                            <!--通过PHP遍历遍历输出二级菜单-->
-                            <?php foreach ($val['son'] as $v){ ?>
-                                <li >
-                                    <a href="#"><?php echo $v; ?></a>
-                                </li>
-                            <?php } ?>
-                        </ul>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $val['top']; ?></a>
+
                     </li>
                 <?php } ?>
             </ul>

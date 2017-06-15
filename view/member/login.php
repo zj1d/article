@@ -5,7 +5,11 @@
     <title>登录</title>
     <link rel="stylesheet" href="./resource/css/bootstrap.min.css">
     <script src="./resource/js/jquery.js"></script>
-    <script src="./resource/js/login.js"></script>
+
+    <?php if(isset($_SESSION['error'])&&$_SESSION['error']!==0){ ?>
+        <script src="./resource/js/login.js"></script>
+    <?php } ?>
+
     <script src="./resource/js/canvas-particle.js"></script>
     <script src="./resource/js/index.js"></script>
     <style>
@@ -62,6 +66,8 @@
             </div>
         </div>
 
+        <?php if(isset($_SESSION['error'])&&$_SESSION['error']!==0){ ?>
+
         <div class="form-group ">
             <label class="control-label col-sm-3" for="inputGroupSuccess2"></label>
             <div class="col-sm-5">
@@ -77,6 +83,7 @@
             </div>
         </div>
 
+        <?php } ?>
 
 
         <div class="form-group ">
@@ -86,6 +93,8 @@
                 </label>
             </div>
         </div>
+
+
 
         <div class="form-group">
             <div class=" col-sm-offset-5 col-sm-6">

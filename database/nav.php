@@ -10,31 +10,25 @@
 return $data = [
     [
         'top' => '前端',
-        'son' => ['HTML','JavaScript','CSS','HTML5','CSS3']
+        'url' => ""
     ],
     [
         'top' => 'PHP',
-        'son' => ['laravel','thinkPHP','CI','HDPHP','Swoole']
     ],
     [
         'top' => 'Python',
-        'son' => ['Django','Diesel','web2py','Web.py']
     ],
     [
         'top' => 'Node.js',
-        'son' => [' Sails js','Total js','Express js','Koa js']
     ],
     [
         'top'=>'linux',
-        'son'=>['Centos','RED HAT','Ubuntu']
     ],
     [
         'top'=>'数据库',
-        'son'=>['MySQL','Oracle','Access','Nosql']
     ],
     [
         'top'=>'服务器',
-        'son'=>['Apache','Nginx','Vsftpd']
     ]
 
 

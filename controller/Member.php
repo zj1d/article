@@ -17,18 +17,27 @@ class Member extends Base
     public function login(){
         // 1. 当用户有post数据时，2.进行登录验证
         if($_POST){
-
-            // 1. 获取验证码 2.进行进一步验证
-            $authcode = strtolower(trim($_POST['authcode']));
-            // 1.判断验证码是否正确 2.精益办验证验证码是否正确
-            if($authcode=== strtolower($_SESSION['authcode'])){
-                // 1.删除post数据中的authcode内容，2. 用于下一步验证,验证码不需要输入数据库
-                unset($_POST['authcode']);
-            }else{
-                // 1.显示结果 2.如果验证码错误 跳转到注册页面
-                go('验证码错误','?a=login');
+            // 登录次数代码
+            // 0: 代表不验证验证码
+            // 判断有无$_SESSION['error'] 如果没有设置为0 如果已设置保持不变
+            if(!isset($_SESSION['error'])){
+                $_SESSION['error']=0;
             }
 
+            if(isset($_SESSION['error'])&&$_SESSION['error']!==0) {
+                // 1. 获取验证码 2.进行进一步验证
+                $authcode = strtolower(trim($_POST['authcode']));
+                // 1.判断验证码是否正确 2.精益办验证验证码是否正确
+                if ($authcode === strtolower($_SESSION['authcode'])) {
+                    // 1.删除post数据中的authcode内容，2. 用于下一步验证,验证码不需要输入数据库
+                    unset($_POST['authcode']);
+                } else {
+                    // 1.显示结果 2.如果验证码错误 跳转到注册页面
+                    go('验证码错误', '?a=login');
+                }
+            }
+            // $_SESSION['error'] 增加 时验证码显示
+            $_SESSION['error']+=1;
 
             // 1.获取用户名，去除左右空格  2. 用于后续操作
             $username = strtolower(trim(htmlspecialchars($_POST['username'])));
@@ -62,15 +71,15 @@ class Member extends Base
                             go("登录成功,欢迎{$username}的到来",'index.php');
                         }else{
                             // 1. 显示结果，密码错误 2. 跳转到登录页面
-                            go("密码错误",'?a=login');
+                            go("密码错误",'?c=member&a=login');
                         }
                     }
                 }
                 // 1.显示结果 没有找到用户名 2.进行跳转到登录页面 3.当所有遍历都没有匹配到时，执行
-                go("用户名不存在",'?a=login');
+                go("用户名不存在",'?c=member&a=login');
             }else{
                 // 1.如果用户名或者密码为空 2.进行显示 同时跳转到 登录界面
-                go("不能为空",'?a=login');
+                go("不能为空",'?c=member&a=login');
             }
         }else{ // 1.当没有post数据时 2.进行正常加载登录界面
             // 1.将至登录页面 2.用于用户登录

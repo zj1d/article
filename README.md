@@ -52,6 +52,9 @@
 |	     ├── login.php                 // 登录页面
 |        └── register.php              // 注册页面
 |
+|—— .gitattributes                     // 改变代码权重
+|—— .gitignore                         // 忽略文件 
+|—— LICENSE                            // Apache License 2.0
 |—— README.md                         // 简介
 |
 └─ index.php                          // 文章系统的入口

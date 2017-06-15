@@ -10,6 +10,8 @@ abstract class Base{
     /**
      * 载入模板功能
      */
+
+
     protected function view(){
         // include "./view/member/login.php"
 

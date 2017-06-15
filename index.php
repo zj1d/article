@@ -9,8 +9,11 @@ session_name('zy');
 // 1.开启session 2.用于保存验证码信息 方便验证
 session_start();
 
+
+
+
 // 控制器 c controller
-// 根据传入不同的参数 调用不同的类
+// 根据传入不同的参数 调用不同的类 类首字母大写 所有使用ucfirst首字母大写
 $c = isset($_GET['c'])?ucfirst($_GET['c']):'Article';
 
 
