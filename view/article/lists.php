@@ -24,7 +24,7 @@
                 <tr>
                     <!--留言板中各个模板的标题内容-->
                     <td>编号</td>
-                    <td>昵称</td>
+                    <td>文章标题</td>
                     <td>内容</td>
                     <td>发布时间</td>
                     <td>最后一次修改</td>
@@ -43,12 +43,12 @@
                         <td>
                             <?php
                             // 1.判断昵称的长度，如果答应长度大于10 ，将其他内容隐藏 2.防止页面被过多内容撑开，影响页面效果 3.可也以在输入中限制输入的长度
-                            if(mb_strlen($v['author'])>10){
+                            if(mb_strlen($v['title'])>30){
                                 // 1. 显示留言 昵称 2.如果超出长度，超出部分，用省略号代替其余部分
-                                echo mb_substr($v['author'],0,10,'utf-8').'···';
+                                echo mb_substr($v['title'],0,10,'utf-8').'···';
                             }else{
                                 // 1.显示昵称 2.正常情况下 昵称长度未超过10
-                                echo $v['author'];
+                                echo $v['title'];
                             }
                             ?>
                         </td>
@@ -60,12 +60,12 @@
                             $str = join('', $matches[0]);
 
                             // 1. 判断留言内容长度 2. 如果内容超过30进行截取
-                            if(mb_strlen($str)>30){
+                            if(mb_strlen($str)>25){
                                 // 1.内容超过30 进行字符串截取 2.同时添加超链接，用于点击查看详情
                                 // 1. 更首页数据一致  2.$K+1 保存和首页数据一致
 //                                $k+=1;
 //                                echo "<a href='?index&id=$k' class='sheng' title='点击查看详情'>".mb_substr(htmlspecialchars($v['content']),0,30,'utf-8')."···</a>";
-                                echo "<a href='?a=index&id=$k' class='sheng' title='点击查看详情'>".mb_substr($str,0,30,'utf-8')."···</a>";
+                                echo "<a href='?a=index&id=$k' class='sheng' title='点击查看详情'>".mb_substr($str,0,25,'utf-8')."···</a>";
 
                             }else {
                                 // 1.正常情况输出，2.没有超过30 同时没有查看具体详情的超链接
@@ -102,8 +102,16 @@
     </div>
     <a href="?a=store" class="btn btn-primary" style="display:block;margin: 0 auto;width: 100px">添加文章</a>
 </div>
-<!--加载footer即js文件-->
+
+<!--加载footer-->
 <?php include "./view/public/footer.php"?>
+
+<!--加载js文件 -->
+<script src="./resource/js/jquery.js"></script>
+<script src="./resource/js/bootstrap.js"></script>
+<script src="./resource/js/canvas-particle.js"></script>
+<script src="./resource/js/index.js"></script>
+
 
 </body>
 </html>

@@ -18,11 +18,12 @@
     <div class="row text-center" >
         <ul class="list-group col-sm-2">
             <!--通过PHP遍历出侧边文章列表-->
-            <?php $num =-1; foreach ($article as $a){ $num++; ?>
+            <li class="list-group-item aa hidden-xs">最新文章列表</li>
+            <?php $num =0; foreach (array_reverse($article) as $a){  ?>
                 <li class="list-group-item aa hidden-xs">
                     <a href="?id=<?php echo $num; ?>" ><?php echo $a['title'];?></a>
                 </li>
-            <?php } ?>
+            <?php  if($num>=9){break;} $num++; } ?>
         </ul>
         <div class="content col-sm-10">
             <!--内容区，通过PHP遍历出每篇文章-->
@@ -40,8 +41,16 @@
 </div>
 </div>
 <!--main结束-->
-<!--加载footer即js文件-->
+
+<!--加载footer-->
 <?php include "./view/public/footer.php"?>
+
+<!--加载js文件 -->
+<script src="./resource/js/jquery.js"></script>
+<script src="./resource/js/bootstrap.js"></script>
+<script src="./resource/js/canvas-particle.js"></script>
+<script src="./resource/js/index.js"></script>
+
 
 </body>
 </html>

@@ -51,8 +51,14 @@
     </form>
 </div>
 
-<!--加载footer即js文件-->
+<!--加载footer-->
 <?php include "./view/public/footer.php"?>
+
+<!--加载js文件 -->
+<script src="./resource/js/jquery.js"></script>
+<script src="./resource/js/bootstrap.js"></script>
+<script src="./resource/js/canvas-particle.js"></script>
+<script src="./resource/js/index.js"></script>
 
 <!-- 实例化编辑器 -->
 <script type="text/javascript">

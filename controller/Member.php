@@ -3,11 +3,17 @@
 class Member extends Base
 {
 
-    private $userdata;
+    private $userdata; // 1. 设置data属性 2. 用于接受保存用户数据库数据
+    private $dbdata;   // 1. 设置data属性 2. 用于接受保存导航数据库数据
     public function __construct()
     {
         // 1.加载用户表数据库 用于判断用户是否存在
         $this->userdata = require('./database/user.php');
+
+
+        // 加载数据库文件 ，并将数据库文件保存到成员属性$data中
+        // 1. 实现初始化时，加载数据库 2.导航栏数据
+        $this->dbdata = require("./database/nav.php");
     }
 
     /**
@@ -15,6 +21,11 @@ class Member extends Base
      * 为文章系统提供登陆功能
      */
     public function login(){
+
+        // 1. 加载数据库，获取数据库中的内容，2. 为首页提供导航栏数据
+        $data = $this->dbdata;
+
+
         // 1. 当用户有post数据时，2.进行登录验证
         if($_POST){
             // 登录次数代码
@@ -101,6 +112,9 @@ class Member extends Base
 
     // 注册
     public function reg(){
+        // 1. 加载数据库，获取数据库中的内容，2. 为首页提供导航栏数据
+        $data = $this->dbdata;
+
         // 1. 当有post数据请求时进行操作 2. 进行数据的验证
         if($_POST){
 
