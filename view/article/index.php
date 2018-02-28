@@ -21,7 +21,7 @@
             <li class="list-group-item aa hidden-xs">最新文章列表</li>
             <?php $num =0; foreach (array_reverse($article) as $a){  ?>
                 <li class="list-group-item aa hidden-xs">
-                    <a href="?id=<?php echo $num; ?>" ><?php echo $a['title'];?></a>
+                    <a href="?id=<?php echo count($article)-$num-1 ; ?>" ><?php echo $a['title'];?></a>
                 </li>
             <?php  if($num>=9){break;} $num++; } ?>
         </ul>
